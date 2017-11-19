@@ -1,0 +1,84 @@
+@import "../../../css/variables.sass"
+
+.search_content
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .header
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+
+  .wrapper
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 2em auto 0;
+    max-width: 1280px;
+    width: 100%;
+
+    .filters
+      font-family: 'Heebo', sans-serif;
+      width: 20%;
+
+      .range_slider
+        -webkit-appearance: none;
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background: #F98100;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+
+        &::-webkit-slider-thumb
+          -webkit-appearance: none;
+          appearance: none;
+          background: #FFFFFF;
+          border: solid 4px #F98100;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          cursor: pointer;
+
+        &::-moz-range-thumb
+          background: #FFFFFF;
+          border-color: #F98100;
+          border-radius: 50%;
+          border-width: 4px;
+          width: 25px;
+          height: 25px;
+          cursor: pointer;
+
+      .label
+        color: #B5B5B5;
+        font-size: .8rem;
+
+      .stars
+        border-top: solid 1px #E3E3E3;
+
+      .values
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0 25px;
+
+        .max
+          text-align: right;
+
+        .price
+          color: rgba(249, 129, 0, 0.46);
+          font-size: 1.4rem;
+          font-weight: bold;
+          margin: 0;
+
+        .label
+          margin: 0;
+
+      .title
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+
+    .card_box
+      width: 70%;

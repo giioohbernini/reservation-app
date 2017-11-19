@@ -1,0 +1,106 @@
+.month_calendar
+  font-family: 'Heebo', sans-serif;
+  max-width: 310px;
+  width: 100%;
+
+  > .header
+    border-top: solid 2px #D8D8D8;
+    border-bottom: solid 2px #D8D8D8;
+
+    .title
+      color: #555555;
+      display: flex;
+      font-size: 16px;
+      justify-content: space-around;
+      letter-spacing: 2px;
+      padding: 1em 0 .5em;
+
+      .arrow
+        background: none;
+        border: none;
+        cursor: pointer;
+
+    .subtitle
+      color: #B5B5B5;
+      display: flex;
+      font-weight: bold;
+      list-style: none;
+      padding: .5em 0;
+
+    .dayWeek
+      text-align: center;
+      text-transform: uppercase;
+      width: 45px;
+
+  > .content
+    display: flex;
+    flex-wrap: wrap;
+
+    .day
+      color: #555555;
+      cursor: pointer;
+      margin: .3em 0;
+      padding: 10px 0;
+      text-align: center;
+      width: 44.2px;
+
+      &._smallDate
+        color: #cecece
+        cursor: initial;
+
+        &:hover
+          background-color: white;
+          border-radius: 0;
+          color: #cecece
+
+      &._disabled
+        cursor: initial;
+
+        &:hover
+          background-color: white;
+          border-radius: 0;
+          color: #555555;
+
+      &._firstactive
+        background-color: #79BD1A;
+        border-radius: 50px 0 0 50px;
+        color: white;
+
+        &:hover
+          border-radius: 50px 0 0 50px;
+
+      &._lastactive
+        background-color: #79BD1A;
+        border-radius: 0 50px 50px 0;
+        color: white;
+        position: relative;
+
+        .value
+          color: #79bd1c;
+          position: relative;
+          z-index: 2;
+
+        .circle
+          background-color: white;
+          border-radius: 100%;
+          height: 90%;
+          position: absolute;
+          right: 5%;
+          top: 5%;
+          width: 90%;
+          z-index: 0;
+
+        &:hover
+          border-radius: 0 50px 50px 0;
+
+      &._active
+        background-color: #79BD1A;
+        color: white;
+
+        &:hover
+          border-radius: 0;
+
+      &:hover
+        background-color: #79BD1A;
+        border-radius: 50px;
+        color: white;

@@ -1,0 +1,60 @@
+@import "../../../css/variables.sass"
+
+.header
+  background-image: url('./assets/hero.jpg')
+  background-size: cover;
+  color: #ffffff
+  height: 600px;
+  width: 100%;
+
+  .header_bar
+    font-family: 'Heebo', sans-serif;
+    padding: 2em 3em;
+
+    ul
+      display: flex;
+      @media #{$mq-mobile}
+        justify-content: flex-end;
+
+      li
+        margin: 0 1.5em;
+        @media #{$mq-mobile}
+          display: none;
+          margin: 0;
+
+        &._mobile
+          display: none;
+
+          @media #{$mq-mobile}
+            display: block;
+
+  .header_content
+    display: flex;
+    justify-content: center;
+
+    .wrapper
+      text-align: center;
+
+      h1, h2
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+
+      h1
+        border-top: solid 2px #ffffff;
+        border-bottom: solid 2px #ffffff;
+        font-size: 4rem;
+        letter-spacing: 10px;
+        margin: 0;
+        padding: 10px;
+        @media #{$mq-tablet}
+          font-size: 3rem;
+        @media #{$mq-mobile}
+          font-size: 2rem;
+
+      h2
+        @media #{$mq-mobile}
+          font-size: 1rem;
+
+      .crown
+        width: 50px;
