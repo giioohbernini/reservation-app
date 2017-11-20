@@ -40,7 +40,7 @@ const Card = ({
       </div>
       <div className={style.right}>
         <span className={style.title}>Total</span>
-        <span className={style.price}>${total}</span>
+        <span className={style.price}>${Math.round(total)}</span>
       </div>
     </div>
   )
