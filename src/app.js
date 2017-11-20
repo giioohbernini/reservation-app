@@ -33,6 +33,7 @@ class App extends Component {
 
     this.resetCheck = () => {
       this.setState({
+        ...this.state,
         checkin: {
           ...this.clearCheck
         },
@@ -46,15 +47,38 @@ class App extends Component {
     this.handleSearch = () => {
       const url = 'http://www.raphaelfabeni.com.br/rv/hotels.json'
 
-      fetch(url)
-        .then(data => data.json())
-        .then(res => {
-          this.setState({
-            ...this.state,
-            hotels: res,
-            showSearch: true
+      const dateStart = moment()
+        .add(this.state.checkin.monthSelected)
+        .set('date', this.state.checkin.key)
+
+      const dateEnd = moment()
+        .add(this.state.checkout.monthSelected)
+        .set('date', this.state.checkout.key)
+
+      const days = dateEnd.diff(dateStart, 'days') + 1
+      let hotels = []
+
+      this.state.checkin.status && this.state.checkout.status
+        ? fetch(url)
+          .then(data => data.json())
+          .then(res => {
+            res.hotels.map(item => {
+              hotels = [
+                ...hotels,
+                {
+                  ...item,
+                  total: item.price * days
+                }
+              ]
+            })
+
+            this.setState({
+              ...this.state,
+              hotels,
+              showSearch: true
+            })
           })
-        })
+        : alert('Select your Check-in or Check-out')
     }
 
     this.handleDateSelect = (e) => {
@@ -92,7 +116,8 @@ class App extends Component {
           checkout: {
             ...this.clearCheck
           },
-          checked: true
+          checked: true,
+          showSearch: false
         })
       }
 

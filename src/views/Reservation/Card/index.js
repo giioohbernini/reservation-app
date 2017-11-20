@@ -1,30 +1,46 @@
 import React from 'react'
 import Button from 'components/Button'
+import starOutline from './assets/star-outline.svg'
+import starFilled from './assets/star-filled.svg'
 
 import style from './Card.sass'
 
-const Card = () => {
+const Card = ({
+  price,
+  rate,
+  image,
+  description,
+  name,
+  total,
+  handleBookNow,
+  handlePriceHistory
+}) => {
   return (
     <div className={style.card}>
       <div className={style.left}>
-        <img src='http://www.raphaelfabeni.com.br/rv/test-resources/hotels/super-8.jpg' alt='hotel image' />
+        <img className={style.image} src={image} alt='hotel image' />
       </div>
       <div className={style.middle}>
-        <div className={style.stars}></div>
-        <div className={style.title}>
-          <h2>Hyatt Place Charlotte Airport/Lake Pointe </h2>
+        <div className={style.stars}>
+          {Array.apply(null, Array(5)).map((item, index) => index < rate
+            ? <img key={index} className={style.star} src={starFilled} alt='star icon' />
+            : <img key={index} className={style.star} src={starOutline} alt='star icon' />
+          )}
+        </div>
+        <div className={style.header}>
+          <h2 className={style.title}>{name}</h2>
         </div>
         <div className={style.bio}>
-          <p>This hotel is located 7 miles from downtown Charlotte and 5 miles from Charlotte Douglas International Airport.</p>
+          <p>{description}</p>
         </div>
         <div className={style.buttons}>
-          <Button color='green'>Book now</Button>
-          <Button color='orange'>Price history</Button>
+          <Button onClick={handleBookNow} color='orange'>Book now</Button>
+          <Button onClick={handlePriceHistory} color='green'>Price history</Button>
         </div>
       </div>
       <div className={style.right}>
         <span className={style.title}>Total</span>
-        <span className={style.price}>$670</span>
+        <span className={style.price}>${total}</span>
       </div>
     </div>
   )

@@ -3,9 +3,89 @@
 .card
   background-color: #FFFFFF;
   box-shadow: 0px 4px 17px 0px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
   display: flex;
-  justify-content: space-around;
+  font-family: 'Heebo', sans-serif;
+  justify-content: space-between;
   margin-bottom: 2em;
-  max-width: 850px;
   padding: 1em;
-  width: 100%;
+
+  @media #{$mq-mobileLarge}
+    flex-wrap: wrap;
+    justify-content: center;
+
+  .right
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1em;
+    text-align: right;
+    .price
+      color: #79BD1A;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: bold;
+    .title
+      color: #B2B0C0;
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-right: 2px;
+      margin-bottom: -5px;
+
+  .left
+    display: flex;
+    .image
+      box-shadow: 0px 0px 12px 0px #919191;
+
+  .middle
+    border-right: solid 1px #D8D8D8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 450px;
+    min-width: 370px;
+    padding: .5em 1em;
+
+    @media #{$mq-mobileLarge}
+      border-right: none;
+      max-width: 100%;
+      min-width: initial;
+      padding: 2em 0;
+
+    .header
+      .title
+        color: #F98100;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin: 10px 0 0;
+        text-transform: uppercase;
+
+    .buttons
+
+      @media #{$mq-mobile}
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+
+      button
+        @media #{$mq-mobile}
+          margin-bottom: 1em;
+          width: 100%;
+
+        &:first-of-type
+          margin-right: 1em;
+          @media #{$mq-mobile}
+            margin-right: 0;
+
+
+    .bio
+      color: #B5B5B5;
+      flex-grow: 2;
+
+    .stars
+
+      .star
+        margin: 0 1px;
+        width: 15px;
