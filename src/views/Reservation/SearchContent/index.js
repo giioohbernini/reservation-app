@@ -60,7 +60,6 @@ class SearchContent extends Component {
     }
 
     this.handleBookNow = () => {
-
     }
 
     this.handlePriceHistory = () => {

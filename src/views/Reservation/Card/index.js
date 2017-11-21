@@ -29,6 +29,7 @@ const Card = ({
         </div>
         <div className={style.header}>
           <h2 className={style.title}>{name}</h2>
+          <p className={style.hiddenPrice}>Total: <span>${Math.round(total)}</span></p>
         </div>
         <div className={style.bio}>
           <p>{description}</p>
