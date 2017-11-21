@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import leftArrow from './assets/arrow-back.svg'
+import rightArrow from './assets/arrow-next.svg'
+
 import style from './style.sass'
 
 const daysOfWeek = ['s', 'm', 't', 'w', 't', 'f', 's']
@@ -28,13 +31,17 @@ const Calendar = ({ month, handleMonthChange, handleDateSelect, checkin, checkou
       <div className={style.header}>
         <div className={style.title}>
           <div className='left'>
-            <button className={style.arrow} onClick={handleMonthChange('less')}>{'<'}</button>
+            <button className={style.arrow} onClick={handleMonthChange('less')}>
+              <img src={leftArrow} alt='left arrow' />
+            </button>
           </div>
           <div className='middle'>
             {`${date.format('MMMM')} / ${date.format('Y')}`}
           </div>
           <div className='right'>
-            <button className={style.arrow} onClick={handleMonthChange('more')}>{'>'}</button>
+            <button className={style.arrow} onClick={handleMonthChange('more')}>
+              <img src={rightArrow} alt='right arrow' />
+            </button>
           </div>
         </div>
         <div className={style.subtitle}>
