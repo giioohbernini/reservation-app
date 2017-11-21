@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import SearchBox from './SearchBox'
 import SearchContent from './SearchContent'
+import Footer from './Footer'
 
 import style from './reservation.sass'
 
@@ -36,6 +37,7 @@ const Reservation = ({
           filter={filter}
         />
       </section>
+      <Footer />
     </section>
   )
 }
