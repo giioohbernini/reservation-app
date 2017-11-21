@@ -22,7 +22,7 @@ class SearchContent extends Component {
     this.handleRangeChange = e => {
       const value = e.target.value
 
-      const changeHotel = setTimeout(() => {
+      setTimeout(() => {
         const searchedHotels = this.state.min !== value
           ? this.state.auxHotels.filter(item => {
             if (item.total >= this.state.rangeValue) return item
@@ -73,6 +73,7 @@ class SearchContent extends Component {
       this.setState({
         ...this.state,
         searchedHotels: nextProps.hotels,
+        auxHotels: nextProps.hotels,
         rate: nextProps.filter.rate,
         max: nextProps.filter.max,
         min: nextProps.filter.price,
