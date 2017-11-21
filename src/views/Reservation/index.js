@@ -11,6 +11,7 @@ const Reservation = ({
   hotels,
   month,
   showSearch,
+  filter,
   handleMonthChange,
   handleDateSelect,
   handleSearch
@@ -32,6 +33,7 @@ const Reservation = ({
           hotels={hotels}
           checkin={checkin}
           checkout={checkout}
+          filter={filter}
         />
       </section>
     </section>

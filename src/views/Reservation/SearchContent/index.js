@@ -3,6 +3,8 @@ import Card from '../Card'
 import starOutline from '../Card/assets/star-outline.svg'
 import starFilled from '../Card/assets/star-filled.svg'
 
+import pricedOut from 'utils/priced-out'
+
 import style from './SearchContent.sass'
 
 class SearchContent extends Component {
@@ -10,14 +12,32 @@ class SearchContent extends Component {
     super(props)
     this.state = {
       searchedHotels: props.hotels,
-      rangeValue: 100,
-      rate: 0
+      rangeValue: props.filter.price,
+      rate: props.filter.rate,
+      max: props.filter.max,
+      showSearch: props.showSearch,
+      auxHotels: props.hotels
     }
 
     this.handleRangeChange = e => {
+      const value = e.target.value
+
+      const changeHotel = setTimeout(() => {
+        const searchedHotels = this.state.min !== value
+          ? this.state.auxHotels.filter(item => {
+            if (item.total >= this.state.rangeValue) return item
+          })
+          : this.state.searchedHotels
+
+        this.setState({
+          ...this.state,
+          searchedHotels
+        })
+      }, 300)
+
       this.setState({
         ...this.state,
-        rangeValue: e.target.value
+        rangeValue: value
       })
     }
 
@@ -31,7 +51,11 @@ class SearchContent extends Component {
       this.setState({
         ...this.state,
         rate,
-        searchedHotels
+        searchedHotels,
+        auxHotels: searchedHotels,
+        max: pricedOut(searchedHotels).high,
+        min: pricedOut(searchedHotels).low,
+        rangeValue: pricedOut(searchedHotels).low
       })
     }
 
@@ -48,17 +72,13 @@ class SearchContent extends Component {
     if (nextProps.hotels !== this.state.searchedHotels) {
       this.setState({
         ...this.state,
-        searchedHotels: nextProps.hotels
+        searchedHotels: nextProps.hotels,
+        rate: nextProps.filter.rate,
+        max: nextProps.filter.max,
+        min: nextProps.filter.price,
+        rangeValue: nextProps.filter.price
       })
     }
-  }
-
-  componentWillUnmount () {
-    console.log('vai desmontar')
-    this.setState({
-      ...this.state,
-      rate: 0
-    })
   }
 
   render () {
@@ -72,13 +92,13 @@ class SearchContent extends Component {
           <div className={style.filters}>
             <div className={style.filter_content}>
               <p className={style.title}>Filters</p>
-              <label className={style.label}>Price Range</label>
+              <label className={style.label}>Price Range: ${this.state.rangeValue}</label>
               <div className={style.slider}>
                 <input
                   className={style.range_slider}
                   type='range'
-                  min='100'
-                  max='600'
+                  min={this.state.min}
+                  max={this.state.max}
                   onChange={this.handleRangeChange}
                   value={this.state.rangeValue}
                 />
@@ -86,11 +106,11 @@ class SearchContent extends Component {
               <div className={style.values}>
                 <div className={style.min}>
                   <p className={style.label}>Min</p>
-                  <p className={style.price}>$100</p>
+                  <p className={style.price}>${this.state.min}</p>
                 </div>
                 <div className={style.max}>
                   <p className={style.label}>Max</p>
-                  <p className={style.price}>$600</p>
+                  <p className={style.price}>${this.state.max}</p>
                 </div>
               </div>
               <div className={style.stars}>

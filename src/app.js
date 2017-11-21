@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import Reservation from 'views/Reservation'
 
+import pricedOut from 'utils/priced-out/'
 import moment from 'moment'
 
 import './css/global.sass'
@@ -28,7 +29,12 @@ class App extends Component {
       },
       checked: false,
       hotels: [],
-      showSearch: false
+      showSearch: false,
+      filter: {
+        price: 100,
+        rate: 0,
+        max: 600
+      }
     }
 
     this.resetCheck = () => {
@@ -75,7 +81,12 @@ class App extends Component {
             this.setState({
               ...this.state,
               hotels,
-              showSearch: true
+              showSearch: true,
+              filter: {
+                price: pricedOut(hotels).low,
+                rate: 0,
+                max: pricedOut(hotels).high
+              }
             })
           })
         : alert('Select your Check-in or Check-out')
@@ -148,6 +159,7 @@ class App extends Component {
         checkout={this.state.checkout}
         hotels={this.state.hotels}
         showSearch={this.state.showSearch}
+        filter={this.state.filter}
         handleMonthChange={this.handleMonthChange}
         handleDateSelect={this.handleDateSelect}
         handleSearch={this.handleSearch}
