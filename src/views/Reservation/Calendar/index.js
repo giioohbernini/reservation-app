@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import style from './style.sass'
 
@@ -62,6 +63,15 @@ const Calendar = ({ month, handleMonthChange, handleDateSelect, checkin, checkou
       </div>
     </div>
   )
+}
+
+Calendar.propTypes = {
+  checkin: PropTypes.object.isRequired,
+  checkout: PropTypes.object.isRequired,
+  date: PropTypes.object.isRequired,
+  handleMonthChange: PropTypes.func.isRequired,
+  handleDateSelect: PropTypes.func.isRequired,
+  month: PropTypes.number.isRequired
 }
 
 export default Calendar
