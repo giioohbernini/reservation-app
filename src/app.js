@@ -1,10 +1,13 @@
 'use strict'
 
 import React, { Component } from 'react'
+import { ToastContainer } from 'react-toastr'
+import moment from 'moment'
+
 import Reservation from 'views/Reservation'
 
 import pricedOut from 'utils/priced-out/'
-import moment from 'moment'
+import toast from 'utils/toast'
 
 import './css/global.sass'
 
@@ -89,11 +92,16 @@ class App extends Component {
               }
             })
           })
-        : alert('Select your Check-in or Check-out')
+        : toast(this.container, 'Please, select your dates')
     }
 
     this.handleDateSelect = (e) => {
       const target = e.target.firstChild.innerHTML || e.target.innerHTML
+
+      if (target < this.state.checkin.key && !this.state.checkout.status) {
+        toast(this.container, 'Please, select a valid date')
+        return null
+      }
 
       const dateString = (month, date) => {
         return moment()
@@ -125,7 +133,8 @@ class App extends Component {
             monthSelected: this.state.month
           },
           checkout: {
-            ...this.clearCheck
+            ...this.clearCheck,
+            monthSelected: this.state.month
           },
           checked: true,
           showSearch: false
@@ -153,17 +162,23 @@ class App extends Component {
   }
   render () {
     return (
-      <Reservation
-        month={this.state.month}
-        checkin={this.state.checkin}
-        checkout={this.state.checkout}
-        hotels={this.state.hotels}
-        showSearch={this.state.showSearch}
-        filter={this.state.filter}
-        handleMonthChange={this.handleMonthChange}
-        handleDateSelect={this.handleDateSelect}
-        handleSearch={this.handleSearch}
-      />
+      <div>
+        <ToastContainer
+          ref={ref => { this.container = ref }}
+          className='toast-top-right'
+        />
+        <Reservation
+          month={this.state.month}
+          checkin={this.state.checkin}
+          checkout={this.state.checkout}
+          hotels={this.state.hotels}
+          showSearch={this.state.showSearch}
+          filter={this.state.filter}
+          handleMonthChange={this.handleMonthChange}
+          handleDateSelect={this.handleDateSelect}
+          handleSearch={this.handleSearch}
+        />
+      </div>
     )
   }
 }
