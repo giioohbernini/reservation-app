@@ -76,7 +76,8 @@ class App extends Component {
                 ...hotels,
                 {
                   ...item,
-                  total: item.price * days
+                  total: item.price * days,
+                  showHistory: false
                 }
               ]
             })

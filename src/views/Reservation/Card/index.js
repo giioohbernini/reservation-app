@@ -5,13 +5,32 @@ import starFilled from './assets/star-filled.svg'
 
 import style from './Card.sass'
 
-const Card = ({
+const GraphCard = ({ index, priceHistory, handlePriceHistory }) => {
+  return (
+    <div className={style.card}>
+      <div className='history_header'>
+        <div className='left'>
+          <h3>Price history 2017</h3>
+        </div>
+        <div className='right'>
+          <span onClick={handlePriceHistory(index)}>back to description</span>
+        </div>
+      </div>
+      <div className='history_graph'></div>
+    </div>
+  )
+}
+
+const DescriptionCard = ({
+  index,
   price,
   rate,
   image,
   description,
   name,
   total,
+  showHistory,
+  priceHistory,
   handleBookNow,
   handlePriceHistory
 }) => {
@@ -36,7 +55,7 @@ const Card = ({
         </div>
         <div className={style.buttons}>
           <Button onClick={handleBookNow} color='orange'>Book now</Button>
-          <Button onClick={handlePriceHistory} color='green'>Price history</Button>
+          <Button onClick={handlePriceHistory(index)} color='green'>Price History</Button>
         </div>
       </div>
       <div className={style.right}>
@@ -45,6 +64,12 @@ const Card = ({
       </div>
     </div>
   )
+}
+
+const Card = ({ showHistory, ...props }) => {
+  return showHistory
+    ? <GraphCard {...props} />
+    : <DescriptionCard {...props} />
 }
 
 export default Card

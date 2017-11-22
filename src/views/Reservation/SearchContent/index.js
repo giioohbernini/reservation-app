@@ -62,12 +62,30 @@ class SearchContent extends Component {
     this.handleBookNow = () => {
     }
 
-    this.handlePriceHistory = () => {
+    this.handlePriceHistory = (index) => () => {
+      console.log('entrei', index)
+      const { searchedHotels } = this.state
+      const hotel = searchedHotels[index]
 
+      const newHotels = [
+        ...searchedHotels.slice(0, index),
+        {
+          ...hotel,
+          showHistory: !hotel.showHistory
+        },
+        ...searchedHotels.slice(index + 1)
+      ]
+
+      this.setState({
+        searchedHotels: newHotels
+      })
+
+      this.forceUpdate()
     }
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log('props')
     if (nextProps.hotels !== this.state.searchedHotels) {
       this.setState({
         ...this.state,
@@ -132,12 +150,15 @@ class SearchContent extends Component {
             {this.state.searchedHotels.map((hotel, index) => (
               <Card
                 key={index}
+                index={index}
                 price={hotel.price}
                 rate={hotel.rate}
                 image={hotel.image}
                 name={hotel.name}
                 total={hotel.total}
                 description={hotel.description}
+                showHistory={hotel.showHistory}
+                priceHistory={hotel.price_history}
                 handleBookNow={this.handleBookNow}
                 handlePriceHistory={this.handlePriceHistory}
               />
