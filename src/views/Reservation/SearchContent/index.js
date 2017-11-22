@@ -25,7 +25,7 @@ class SearchContent extends Component {
       setTimeout(() => {
         const searchedHotels = this.state.min !== value
           ? this.state.auxHotels.filter(item => {
-            if (item.total >= this.state.rangeValue) return item
+            if (Math.round(item.total) >= this.state.rangeValue) return item
           })
           : this.state.searchedHotels
 
