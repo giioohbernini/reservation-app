@@ -15,9 +15,72 @@
     flex-wrap: wrap;
     justify-content: center;
 
-  > .history_header
-    background-color: #ffffff;
-    padding: 0 1em;
+  > .history
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media #{$mq-mobileLarge}
+      margin-top: 3em;
+
+    .graph
+      display: flex;
+      height: 100%;
+      justify-content: space-around;
+      width: 100%;
+
+      .item
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end
+        width: 30px;
+
+        .bar
+          background: linear-gradient(to bottom, #EE6F48, #F98100);
+          opacity: .6;
+          transition: opacity .25s ease;
+          max-height: 150px;
+
+          &:hover
+            opacity: 1;
+
+        .month
+          color: #B5B5B5;
+          font-size: 12px;
+          letter-spacing: 3px;
+          margin-top: 10px;
+
+    .header
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      @media #{$mq-mobileLarge}
+        margin-bottom: 2em;
+
+      .right
+        align-items: center;
+        color: #555555;
+        display: flex;
+        height: auto;
+        letter-spacing: 2px;
+        padding: .5em;
+
+        .arrow
+          margin: 0 10px;
+          width: 30px;
+
+      .left
+        padding: .5em 1em;
+
+        .title
+          color: #F98100;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 2px;
+          margin: 0;
+          text-transform: uppercase;
 
   > .right
     display: flex;
@@ -45,6 +108,7 @@
     display: flex;
     .image
       box-shadow: 0px 0px 12px 0px #919191;
+      margin-right: 10px;
 
   > .middle
     border-right: solid 1px #D8D8D8;

@@ -63,7 +63,6 @@ class SearchContent extends Component {
     }
 
     this.handlePriceHistory = (index) => () => {
-      console.log('entrei', index)
       const { searchedHotels } = this.state
       const hotel = searchedHotels[index]
 
@@ -85,7 +84,6 @@ class SearchContent extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('props')
     if (nextProps.hotels !== this.state.searchedHotels) {
       this.setState({
         ...this.state,

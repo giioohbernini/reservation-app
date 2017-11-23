@@ -1,0 +1,36 @@
+.tooltip
+  display: inline-block;
+  position: relative;
+
+  &:hover .tooltiptext
+    visibility: visible;
+
+  .tooltiptext
+    background-color: #484848;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Heebo', sans-serif;
+    padding: 5px 0;
+    text-align: center;
+    transition: all .25s ease;
+    visibility: hidden;
+    width: 60px;
+
+    &._top
+      bottom: 100%;
+      transition: all 25s ease;
+      left: 50%;
+      margin-left: -30px;
+      margin-bottom: 10px;
+      position: absolute;
+      z-index: 1;
+
+      &:after
+        background-color: #484848;
+        bottom: -2px;
+        content: '';
+        height: 5px;
+        left: calc(50% - 2.5px)
+        position: absolute;
+        transform: rotate(45deg)
+        width: 5px;

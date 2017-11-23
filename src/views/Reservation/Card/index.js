@@ -1,22 +1,41 @@
 import React from 'react'
+
 import Button from 'components/Button'
+import Tooltip from 'components/Tooltip'
+
+import backArrow from './assets/back-description.svg'
 import starOutline from './assets/star-outline.svg'
 import starFilled from './assets/star-filled.svg'
 
 import style from './Card.sass'
 
-const GraphCard = ({ index, priceHistory, handlePriceHistory }) => {
+const GraphCard = ({ index, image, priceHistory, handlePriceHistory }) => {
   return (
     <div className={style.card}>
-      <div className='history_header'>
-        <div className='left'>
-          <h3>Price history 2017</h3>
+      <div className={style.left}>
+        <img className={style.image} src={image} alt='hotel image' />
+      </div>
+      <div className={style.history}>
+        <div className={style.header}>
+          <div className={style.left}>
+            <h3 className={style.title}>Price history 2017</h3>
+          </div>
+          <div className={style.right} onClick={handlePriceHistory(index)}>
+            <img className={style.arrow} src={backArrow} alt='back to description' />
+            <span>Back to description</span>
+          </div>
         </div>
-        <div className='right'>
-          <span onClick={handlePriceHistory(index)}>back to description</span>
+        <div className={style.graph}>
+          {priceHistory.map((item, i) => (
+            <div key={i} className={style.item}>
+              <Tooltip text={`$${item.value}`}>
+                <div className={style.bar} style={{ height: item.value / 3 }} />
+              </Tooltip>
+              <div className={style.month}>{item.month}</div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className='history_graph'></div>
     </div>
   )
 }
