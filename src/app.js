@@ -99,7 +99,14 @@ class App extends Component {
     this.handleDateSelect = (e) => {
       const target = e.target.firstChild.innerHTML || e.target.innerHTML
 
-      if (target < this.state.checkin.key && !this.state.checkout.status) {
+      const isCurrentMonth = this.state.checkin.monthSelected === this.state.month
+      const isSmallerThanCheckin = target < this.state.checkin.key
+
+      if (
+        isSmallerThanCheckin &&
+        !this.state.checkout.status &&
+        isCurrentMonth
+      ) {
         toast(this.container, 'Please, select a valid date')
         return null
       }
