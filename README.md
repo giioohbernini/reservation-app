@@ -3,7 +3,7 @@
 Demo
 
 - [Component](http://giovannibernini.com.br/reservation-app/)
-- Storybook
+- [Storybook](http://giovannibernini.com.br/reservation-app/storybook)
 
 ## How to use:
 
