@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'components/Button'
 import Calendar from '../Calendar/'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 
 import style from './SearchBox.sass'
 
@@ -29,7 +30,7 @@ const SearchBox = ({
               <p className={style.title}>Check-Out</p>
               <p className={style.subtitle}>{checkout.text}</p>
             </div>
-            <Button onClick={handleSearch} color='orange' borderSize='2'>Search hotels</Button>
+            <Button onClick={handleSearch} color='orange' borderSize={2}>Search hotels</Button>
           </div>
         </div>
         <div className={style.right}>
@@ -45,6 +46,15 @@ const SearchBox = ({
       </div>
     </div>
   )
+}
+
+SearchBox.propTypes = {
+  month: PropTypes.number.isRequired,
+  checkin: PropTypes.object.isRequired,
+  checkout: PropTypes.object.isRequired,
+  handleMonthChange: PropTypes.func.isRequired,
+  handleDateSelect: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired
 }
 
 export default SearchBox
