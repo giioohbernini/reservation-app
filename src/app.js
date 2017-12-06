@@ -54,7 +54,7 @@ class App extends Component {
     }
 
     this.handleSearch = () => {
-      const url = 'http://www.raphaelfabeni.com.br/rv/hotels.json'
+      const url = 'https://giovannibernini.com.br/files/hotels.json'
 
       const dateStart = moment()
         .add(this.state.checkin.monthSelected)
